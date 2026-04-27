@@ -1,4 +1,60 @@
-<!DOCTYPE html>
+[15:51, 27/04/2026] paulo: <!DOCTYPE html>
+<html lang="fr">
+<head><link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#e63946">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SPV">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#8B0000" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Vacations SPV" />
+  <title>Vacations SPV</title>
+  <link rel="preconnect" href="https://fon…
+[16:11, 27/04/2026] paulo: Bonne remarque ! C'est encore plus simple. Voici le fichier corrigé avec les *pourcentages modifiables* par type de vacation :
+
+Je vais modifier directement la section des taux personnalisés pour remplacer les champs €/h par des champs *%* :
+
+Voilà le fichier corrigé ! Dans *Paramètres → Pourcentages par type de vacation* vous pouvez maintenant changer le *%* pour chaque type :
+
+- Garde postée : 60% → modifier à 65% par exemple
+- Intervention : 100% → modifier si besoin
+- Formation, Formateur, etc.
+
+Le taux effectif en €/h se calcule automatiquement en dessous de chaque champ. Remplacez votre index.html sur GitHub avec ce fichier. 🎯
+[16:12, 27/04/2026] paulo: <!DOCTYPE html>
+<html lang="fr">
+<head><link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#e63946">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SPV">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#8B0000" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Vacations SPV" />
+  <title>Vacations SPV</title>
+  <link rel="preconnect" href="https://fon…
+[16:22, 27/04/2026] paulo: <!DOCTYPE html>
+<html lang="fr">
+<head><link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#e63946">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SPV">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#8B0000" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Vacations SPV" />
+  <title>Vacations SPV</title>
+  <link rel="preconnect" href="https://fon…
+[16:47, 27/04/2026] paulo: <!DOCTYPE html>
 <html lang="fr">
 <head><link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#e63946">
@@ -707,12 +763,12 @@ function init() {
 function initDateSelectors() {
   const now = new Date();
   const jourSel = document.getElementById("inp-jour");
-  jourSel.innerHTML = Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("");
+  jourSel.innerHTML = Array.from({length:31},(_,i)=><option value="${i+1}">${i+1}</option>).join("");
   jourSel.value = now.getDate();
   document.getElementById("inp-mois").value = now.getMonth() + 1;
   const annSel = document.getElementById("inp-annee");
   const yr = now.getFullYear();
-  annSel.innerHTML = [yr-1, yr, yr+1].map(y=>`<option value="${y}">${y}</option>`).join("");
+  annSel.innerHTML = [yr-1, yr, yr+1].map(y=><option value="${y}">${y}</option>).join("");
   annSel.value = yr;
 }
 
@@ -736,7 +792,7 @@ function buildCatGrid() {
     return `
     <button class="cat-btn ${cat.id === selectedCat ? 'selected' : ''}"
       id="cat-${cat.id}"
-      style="${cat.id === selectedCat ? `border-color:${cat.color};background:${cat.color}18;` : ''}"
+      style="${cat.id === selectedCat ? border-color:${cat.color};background:${cat.color}18; : ''}"
       onclick="selectCat('${cat.id}')">
       <span class="cat-icon">${cat.icon}</span>
       <span class="cat-label">${cat.label}</span>
@@ -832,7 +888,7 @@ function updateIntervUI() {
     <div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #F5C6C6">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
         <span style="font-size:12px;font-weight:700;color:#C0392B">Intervention ${idx+1}</span>
-        ${interventions.length > 1 ? `<button onclick="supprimerIntervention(${idx})" style="background:#FEE;border:1px solid #F5C6C6;border-radius:6px;padding:3px 8px;color:#C0392B;cursor:pointer;font-size:12px">✕ Supprimer</button>` : ""}
+        ${interventions.length > 1 ? <button onclick="supprimerIntervention(${idx})" style="background:#FEE;border:1px solid #F5C6C6;border-radius:6px;padding:3px 8px;color:#C0392B;cursor:pointer;font-size:12px">✕ Supprimer</button> : ""}
       </div>
       <div class="time-row" style="margin-bottom:0">
         <div class="time-block">
@@ -845,7 +901,7 @@ function updateIntervUI() {
           <input class="time-input" type="time" value="${iv.fin}" onchange="onIntervChange(${idx},'fin',this.value)">
         </div>
       </div>
-      ${(iv.debut && iv.fin) ? `<div style="text-align:center;font-size:12px;color:#888;margin-top:4px">⏱ ${hm(diffMins(iv.debut,iv.fin))}</div>` : ""}
+      ${(iv.debut && iv.fin) ? <div style="text-align:center;font-size:12px;color:#888;margin-top:4px">⏱ ${hm(diffMins(iv.debut,iv.fin))}</div> : ""}
     </div>
   `).join("");
 }
@@ -867,7 +923,7 @@ function selectCat(id) {
 
 function hm(mins) {
   const h = Math.floor(mins / 60), m = mins % 60;
-  return `${h}h${String(m).padStart(2,"0")}`;
+  return ${h}h${String(m).padStart(2,"0")};
 }
 
 function montant(pct, totalMins, catId) {
@@ -963,8 +1019,8 @@ function addEntry() {
   const jour  = parseInt(document.getElementById("inp-jour").value);
   const mois  = parseInt(document.getElementById("inp-mois").value);
   const annee = parseInt(document.getElementById("inp-annee").value);
-  const moisKey   = `${annee}-${String(mois).padStart(2,"0")}`;
-  const dateLabel = `${String(jour).padStart(2,"0")} ${MOIS_NOMS[mois]} ${annee}`;
+  const moisKey   = ${annee}-${String(mois).padStart(2,"0")};
+  const dateLabel = ${String(jour).padStart(2,"0")} ${MOIS_NOMS[mois]} ${annee};
 
   const validIntervs = interventions.filter(iv => iv.debut && iv.fin);
   const totalIntervMins = getTotalIntervMins();
@@ -988,11 +1044,11 @@ function addEntry() {
         pctUtilise: getPctCat("intervention"),
         heures: Math.floor(mins/60), minutes: mins%60,
         debut: iv.debut, fin: iv.fin,
-        note: validIntervs.length > 1 ? `Intervention ${i+1}${note?" — "+note:""}` : (note ? note+" (intervention)" : "Intervention en garde"),
+        note: validIntervs.length > 1 ? Intervention ${i+1}${note?" — "+note:""} : (note ? note+" (intervention)" : "Intervention en garde"),
         jour, mois, annee, moisKey, date: dateLabel, lienGroupe: ts,
       });
     });
-    showToast(`✅ Garde + ${validIntervs.length} intervention${validIntervs.length>1?"s":""} ajoutées`);
+    showToast(✅ Garde + ${validIntervs.length} intervention${validIntervs.length>1?"s":""} ajoutées);
   } else {
     const h = Math.floor(currentMins / 60), m = currentMins % 60;
     entries.unshift({
@@ -1058,11 +1114,11 @@ function buildMonthFilter() {
   const keys = [...new Set(entries.map(e => e.moisKey || "").filter(Boolean))].sort().reverse();
   const el = document.getElementById("month-filter");
   if (keys.length === 0) { el.innerHTML = ""; return; }
-  el.innerHTML = `<button class="month-pill ${selectedMonth==='all'?'active':''}" onclick="setMonthFilter('all')">Tous</button>` +
+  el.innerHTML = <button class="month-pill ${selectedMonth==='all'?'active':''}" onclick="setMonthFilter('all')">Tous</button> +
     keys.map(k => {
       const [y, m] = k.split("-");
-      const label = `${MOIS_NOMS[parseInt(m)]} ${y}`;
-      return `<button class="month-pill ${selectedMonth===k?'active':''}" onclick="setMonthFilter('${k}')">${label}</button>`;
+      const label = ${MOIS_NOMS[parseInt(m)]} ${y};
+      return <button class="month-pill ${selectedMonth===k?'active':''}" onclick="setMonthFilter('${k}')">${label}</button>;
     }).join("");
 }
 
@@ -1078,7 +1134,7 @@ function renderRecap() {
   const filtered = selectedMonth === "all" ? entries : entries.filter(e => e.moisKey === selectedMonth);
 
   if (filtered.length === 0) {
-    el.innerHTML = `<div class="empty"><span class="empty-icon">📋</span>${entries.length===0?"Aucune vacation saisie.<br>Commencez par ajouter des entrées dans l'onglet Saisie.":"Aucune vacation pour ce mois."}</div>`;
+    el.innerHTML = <div class="empty"><span class="empty-icon">📋</span>${entries.length===0?"Aucune vacation saisie.<br>Commencez par ajouter des entrées dans l'onglet Saisie.":"Aucune vacation pour ce mois."}</div>;
     return;
   }
 
@@ -1100,9 +1156,9 @@ function renderRecap() {
   }).filter(Boolean);
 
   const titre = selectedMonth === "all" ? "Toutes les vacations" :
-    (() => { const [y,m] = selectedMonth.split("-"); return `${MOIS_NOMS[parseInt(m)]} ${y}`; })();
+    (() => { const [y,m] = selectedMonth.split("-"); return ${MOIS_NOMS[parseInt(m)]} ${y}; })();
 
-  el.innerHTML = `<div style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#AAA;margin-bottom:10px;padding-left:2px">${titre}</div>` +
+  el.innerHTML = <div style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#AAA;margin-bottom:10px;padding-left:2px">${titre}</div> +
     bycat.map(c => `
     <div class="recap-card" style="border-color:${c.color}">
       <div class="recap-header">
