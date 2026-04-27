@@ -1,573 +1,176 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head><link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#e63946">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="SPV">
+<head>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#e63946">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="SPV">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#8B0000" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Vacations SPV" />
   <title>Vacations SPV</title>
-  <link rel="preconnect" href="https://fon…
-[16:11, 27/04/2026] paulo: Bonne remarque ! C'est encore plus simple. Voici le fichier corrigé avec les *pourcentages modifiables* par type de vacation :
-
-Je vais modifier directement la section des taux personnalisés pour remplacer les champs €/h par des champs *%* :
-
-Voilà le fichier corrigé ! Dans *Paramètres → Pourcentages par type de vacation* vous pouvez maintenant changer le *%* pour chaque type :
-
-- Garde postée : 60% → modifier à 65% par exemple
-- Intervention : 100% → modifier si besoin
-- Formation, Formateur, etc.
-
-Le taux effectif en €/h se calcule automatiquement en dessous de chaque champ. Remplacez votre index.html sur GitHub avec ce fichier. 🎯
-[16:12, 27/04/2026] paulo: <!DOCTYPE html>
-<html lang="fr">
-<head><link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#e63946">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="SPV">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#8B0000" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Vacations SPV" />
-  <title>Vacations SPV</title>
-  <link rel="preconnect" href="https://fon…
-[16:22, 27/04/2026] paulo: <!DOCTYPE html>
-<html lang="fr">
-<head><link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#e63946">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="SPV">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#8B0000" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Vacations SPV" />
-  <title>Vacations SPV</title>
-  <link rel="preconnect" href="https://fon…
-[16:47, 27/04/2026] paulo: <!DOCTYPE html>
-<html lang="fr">
-<head><link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#e63946">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="SPV">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#8B0000" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Vacations SPV" />
-  <title>Vacations SPV</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --rouge: #8B0000;
       --rouge-vif: #C0392B;
-      --rouge-light: #F9EBEA;
-      --or: #D4A017;
       --bg: #F2F0EB;
-      --blanc: #FFFFFF;
-      --gris: #7F8C8D;
-      --gris-light: #ECF0F1;
       --texte: #2C3E50;
     }
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    body { font-family:'Source Sans 3',sans-serif; background:var(--bg); color:var(--texte); min-height:100vh; max-width:480px; margin:0 auto; overflow-x:hidden; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    /* HEADER */
+    .header { background:linear-gradient(160deg,#6B0000 0%,#A00000 60%,#C0392B 100%); color:white; padding:44px 16px 0; position:relative; overflow:hidden; }
+    .header-top { display:flex; align-items:center; gap:12px; margin-bottom:18px; position:relative; z-index:1; }
+    .header-logo { width:48px; height:48px; background:rgba(255,255,255,0.15); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:26px; border:1px solid rgba(255,255,255,0.2); }
+    .header-titles { flex:1; }
+    .header-title { font-family:'Oswald',sans-serif; font-size:22px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+    .header-sub { font-size:10px; opacity:0.65; letter-spacing:3px; text-transform:uppercase; margin-top:1px; }
+    .taux-badge { background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); border-radius:10px; padding:6px 12px; cursor:pointer; text-align:center; }
+    .taux-badge-label { font-size:9px; opacity:0.7; letter-spacing:1.5px; text-transform:uppercase; display:block; }
+    .taux-badge-val { font-family:'Oswald',sans-serif; font-size:18px; font-weight:600; display:block; }
+    .totals-bar { display:flex; background:rgba(0,0,0,0.25); border-radius:8px 8px 0 0; }
+    .total-item { flex:1; text-align:center; padding:12px 4px; }
+    .total-num { font-family:'Oswald',sans-serif; font-size:20px; font-weight:600; display:block; }
+    .total-lbl { font-size:9px; opacity:0.65; text-transform:uppercase; letter-spacing:1.5px; display:block; margin-top:1px; }
+    .total-sep { width:1px; background:rgba(255,255,255,0.15); margin:8px 0; }
 
-    body {
-      font-family: 'Source Sans 3', sans-serif;
-      background: var(--bg);
-      color: var(--texte);
-      min-height: 100vh;
-      max-width: 480px;
-      margin: 0 auto;
-      overflow-x: hidden;
-    }
+    /* TABS */
+    .tabs { display:flex; background:white; border-bottom:1px solid #E8E8E8; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+    .tab-btn { flex:1; padding:12px 4px; border:none; background:none; cursor:pointer; font-family:'Source Sans 3',sans-serif; font-size:11px; color:#999; letter-spacing:0.5px; border-bottom:2px solid transparent; transition:all .2s; }
+    .tab-btn.active { color:var(--rouge); border-bottom-color:var(--rouge); font-weight:700; }
 
-    .header {
-      background: linear-gradient(160deg, #6B0000 0%, #A00000 60%, #C0392B 100%);
-      color: white;
-      padding: 44px 16px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .header::before {
-      content: '';
-      position: absolute;
-      top: -30px; right: -30px;
-      width: 160px; height: 160px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-    }
-    .header::after {
-      content: '';
-      position: absolute;
-      bottom: 20px; left: -40px;
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.04);
-    }
-    .header-top {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
-    }
-    .header-logo {
-      width: 48px; height: 48px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-    .header-titles { flex: 1; }
-    .header-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .header-sub {
-      font-size: 10px;
-      opacity: 0.65;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-top: 1px;
-    }
-    .taux-badge {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 10px;
-      padding: 6px 12px;
-      cursor: pointer;
-      text-align: center;
-      transition: background .2s;
-    }
-    .taux-badge:active { background: rgba(255,255,255,0.2); }
-    .taux-badge-label { font-size: 9px; opacity: 0.7; letter-spacing: 1.5px; text-transform: uppercase; display: block; }
-    .taux-badge-val { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; display: block; }
+    /* CONTENT */
+    .content { padding:14px 14px 100px; }
+    .card { background:white; border-radius:14px; padding:16px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+    .card-title { font-family:'Oswald',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:2px; color:#AAA; margin-bottom:14px; }
 
-    .totals-bar {
-      display: flex;
-      background: rgba(0,0,0,0.25);
-      border-radius: 8px 8px 0 0;
-      position: relative; z-index: 1;
-    }
-    .total-item { flex: 1; text-align: center; padding: 12px 4px; }
-    .total-num { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 600; display: block; }
-    .total-lbl { font-size: 9px; opacity: 0.65; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-top: 1px; }
-    .total-sep { width: 1px; background: rgba(255,255,255,0.15); margin: 8px 0; }
+    /* CATEGORIE GRID */
+    .cat-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .cat-btn { background:#F8F7F4; border:2px solid #EBEBEB; border-radius:12px; padding:12px 10px; cursor:pointer; text-align:left; transition:all .15s; }
+    .cat-btn.selected { font-weight:700; }
+    .cat-icon { font-size:22px; display:block; margin-bottom:6px; }
+    .cat-label { font-size:12px; color:#444; display:block; line-height:1.3; margin-bottom:3px; }
+    .cat-pct { font-family:'Oswald',sans-serif; font-size:13px; font-weight:600; display:block; }
 
-    .tabs {
-      display: flex;
-      background: white;
-      border-bottom: 1px solid #E8E8E8;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    .tab-btn {
-      flex: 1;
-      padding: 12px 4px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 11px;
-      color: #999;
-      letter-spacing: 0.5px;
-      border-bottom: 2px solid transparent;
-      transition: all .2s;
-    }
-    .tab-btn.active {
-      color: var(--rouge);
-      border-bottom-color: var(--rouge);
-      font-weight: 700;
-    }
+    /* HORAIRES */
+    .time-row { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+    .time-block { flex:1; }
+    .time-label { font-size:10px; color:#AAA; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px; }
+    .time-input { width:100%; font-family:'Oswald',sans-serif; font-size:28px; font-weight:600; border:2px solid #EBEBEB; border-radius:10px; padding:8px 6px; text-align:center; color:var(--texte); background:#FAFAFA; outline:none; transition:border-color .2s; }
+    .time-input:focus { border-color:var(--rouge); }
+    .time-arrow { font-size:22px; color:#CCC; padding-top:18px; flex-shrink:0; }
+    .duree-result { display:flex; align-items:center; justify-content:center; gap:8px; background:#F8F7F4; border-radius:10px; padding:10px; margin-bottom:12px; border:1.5px solid #EBEBEB; }
+    .duree-result-val { font-family:'Oswald',sans-serif; font-size:22px; font-weight:700; }
+    .duree-result-lbl { font-size:11px; color:#AAA; text-transform:uppercase; letter-spacing:1px; }
+    .duree-night { font-size:11px; color:#8E44AD; margin-left:4px; }
 
-    .content { padding: 14px 14px 100px; }
+    /* TOGGLE */
+    .toggle-row { display:flex; align-items:center; justify-content:space-between; padding:10px 0 6px; cursor:pointer; }
+    .toggle-label { font-size:13px; font-weight:600; color:#555; }
+    .toggle-sub { font-size:11px; color:#AAA; margin-top:1px; }
+    .toggle-switch { width:44px; height:24px; background:#DDD; border-radius:12px; position:relative; transition:background .2s; flex-shrink:0; cursor:pointer; border:none; }
+    .toggle-switch.on { background:#C0392B; }
+    .toggle-switch::after { content:''; position:absolute; width:20px; height:20px; background:white; border-radius:50%; top:2px; left:2px; transition:left .2s; box-shadow:0 1px 3px rgba(0,0,0,0.2); }
+    .toggle-switch.on::after { left:22px; }
+    .interv-block { background:#FEF5F5; border:1.5px solid #F5C6C6; border-radius:10px; padding:12px; margin-top:8px; }
+    .interv-title { font-size:11px; color:#C0392B; text-transform:uppercase; letter-spacing:1.5px; font-weight:700; margin-bottom:10px; }
 
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
-    .card-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #AAA;
-      margin-bottom: 14px;
-    }
+    /* PREVIEW */
+    .preview-double { display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
+    .preview-line { border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border:1.5px solid; background:white; }
+    .preview-line-icon { font-size:22px; }
+    .preview-line-info { flex:1; }
+    .preview-line-label { font-size:13px; font-weight:600; color:#333; }
+    .preview-line-sub { font-size:11px; color:#AAA; }
+    .preview-line-montant { font-family:'Oswald',sans-serif; font-size:17px; font-weight:700; }
+    .preview { border-radius:12px; padding:14px 16px; margin-bottom:12px; display:flex; align-items:center; gap:12px; border:2px solid; background:white; }
+    .preview-icon { font-size:30px; }
+    .preview-info { flex:1; }
+    .preview-label { font-weight:600; font-size:14px; color:#333; }
+    .preview-sub { font-size:11px; color:#AAA; margin-top:2px; }
+    .preview-montant { font-family:'Oswald',sans-serif; font-size:26px; font-weight:700; }
 
-    .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .cat-btn {
-      background: #F8F7F4;
-      border: 2px solid #EBEBEB;
-      border-radius: 12px;
-      padding: 12px 10px;
-      cursor: pointer;
-      text-align: left;
-      transition: all .15s;
-      position: relative;
-    }
-    .cat-btn.selected { font-weight: 700; }
-    .cat-icon { font-size: 22px; display: block; margin-bottom: 6px; }
-    .cat-label { font-size: 12px; color: #444; display: block; line-height: 1.3; margin-bottom: 3px; }
-    .cat-pct { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; display: block; }
+    /* DATE */
+    .month-row { display:flex; gap:8px; }
+    .month-select, .year-select { flex:1; font-family:'Oswald',sans-serif; font-size:16px; font-weight:600; border:2px solid #EBEBEB; border-radius:10px; padding:10px 8px; text-align:center; color:var(--texte); background:#FAFAFA; outline:none; cursor:pointer; }
+    .month-select:focus, .year-select:focus { border-color:var(--rouge); }
 
-    .time-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .time-block { flex: 1; }
-    .time-label { font-size: 10px; color: #AAA; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px; }
-    .time-input {
-      width: 100%;
-      font-family: 'Oswald', sans-serif;
-      font-size: 28px;
-      font-weight: 600;
-      border: 2px solid #EBEBEB;
-      border-radius: 10px;
-      padding: 8px 6px;
-      text-align: center;
-      color: var(--texte);
-      background: #FAFAFA;
-      outline: none;
-      transition: border-color .2s;
-    }
-    .time-input:focus { border-color: var(--rouge); }
-    .time-arrow { font-size: 22px; color: #CCC; padding-top: 18px; flex-shrink: 0; }
-    .duree-result {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #F8F7F4;
-      border-radius: 10px;
-      padding: 10px;
-      margin-bottom: 12px;
-      border: 1.5px solid #EBEBEB;
-    }
-    .duree-result-val { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 700; color: var(--texte); }
-    .duree-result-lbl { font-size: 11px; color: #AAA; text-transform: uppercase; letter-spacing: 1px; }
-    .duree-night { font-size: 11px; color: #8E44AD; margin-left: 4px; }
+    /* NOTE */
+    .note-input { width:100%; border:1.5px solid #EBEBEB; border-radius:10px; padding:10px 12px; font-size:14px; font-family:'Source Sans 3',sans-serif; color:#555; outline:none; background:#FAFAFA; }
+    .note-input:focus { border-color:var(--rouge); }
 
-    .toggle-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0 6px;
-      cursor: pointer;
-    }
-    .toggle-label { font-size: 13px; font-weight: 600; color: #555; }
-    .toggle-sub { font-size: 11px; color: #AAA; margin-top: 1px; }
-    .toggle-switch {
-      width: 44px; height: 24px;
-      background: #DDD;
-      border-radius: 12px;
-      position: relative;
-      transition: background .2s;
-      flex-shrink: 0;
-      cursor: pointer;
-      border: none;
-    }
-    .toggle-switch.on { background: #C0392B; }
-    .toggle-switch::after {
-      content: '';
-      position: absolute;
-      width: 20px; height: 20px;
-      background: white;
-      border-radius: 50%;
-      top: 2px; left: 2px;
-      transition: left .2s;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    .toggle-switch.on::after { left: 22px; }
-    .interv-block {
-      background: #FEF5F5;
-      border: 1.5px solid #F5C6C6;
-      border-radius: 10px;
-      padding: 12px;
-      margin-top: 8px;
-      animation: slideIn .2s ease;
-    }
-    .interv-title { font-size: 11px; color: #C0392B; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 10px; }
-    .preview-double { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-    .preview-line {
-      border-radius: 10px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 1.5px solid;
-      background: white;
-    }
-    .preview-line-icon { font-size: 22px; }
-    .preview-line-info { flex: 1; }
-    .preview-line-label { font-size: 13px; font-weight: 600; color: #333; }
-    .preview-line-sub { font-size: 11px; color: #AAA; }
-    .preview-line-montant { font-family: 'Oswald', sans-serif; font-size: 17px; font-weight: 700; }
+    /* BOUTONS */
+    .add-btn { width:100%; background:linear-gradient(135deg,var(--rouge-vif),var(--rouge)); color:white; border:none; border-radius:12px; padding:15px; font-family:'Oswald',sans-serif; font-size:17px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; margin-bottom:12px; box-shadow:0 4px 15px rgba(139,0,0,0.3); transition:all .15s; }
+    .add-btn:active { transform:scale(0.98); }
+    .add-btn.secondary { background:linear-gradient(135deg,#7F8C8D,#5D6D7E); box-shadow:0 4px 15px rgba(0,0,0,0.15); }
 
-    .month-row { display: flex; gap: 8px; margin-bottom: 0; }
-    .month-select, .year-select {
-      flex: 1;
-      font-family: 'Oswald', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      border: 2px solid #EBEBEB;
-      border-radius: 10px;
-      padding: 10px 8px;
-      text-align: center;
-      color: var(--texte);
-      background: #FAFAFA;
-      outline: none;
-      transition: border-color .2s;
-      cursor: pointer;
-    }
-    .month-select:focus, .year-select:focus { border-color: var(--rouge); }
+    /* HISTORIQUE */
+    .entry-row { display:flex; align-items:center; gap:10px; padding:11px 0; border-bottom:1px solid #F5F5F5; }
+    .entry-row:last-child { border-bottom:none; }
+    .entry-icon { font-size:24px; flex-shrink:0; }
+    .entry-info { flex:1; min-width:0; }
+    .entry-label { font-size:13px; font-weight:600; color:#333; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .entry-sub { font-size:11px; color:#BBB; margin-top:1px; }
+    .entry-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+    .entry-montant { font-family:'Oswald',sans-serif; font-size:16px; font-weight:600; }
+    .del-btn { background:#FEE; border:1.5px solid #F5C6C6; border-radius:8px; cursor:pointer; font-size:18px; padding:6px 10px; color:#C0392B; min-width:40px; min-height:40px; display:flex; align-items:center; justify-content:center; }
 
-    .month-filter { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 14px; scrollbar-width: none; }
-    .month-filter::-webkit-scrollbar { display: none; }
-    .month-pill {
-      flex-shrink: 0;
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1.5px solid #EBEBEB;
-      background: white;
-      font-size: 12px;
-      font-family: 'Oswald', sans-serif;
-      cursor: pointer;
-      color: #888;
-      transition: all .15s;
-      white-space: nowrap;
-    }
-    .month-pill.active { background: var(--rouge); border-color: var(--rouge); color: white; }
+    /* RECAP */
+    .month-filter { display:flex; gap:6px; overflow-x:auto; padding-bottom:4px; margin-bottom:14px; scrollbar-width:none; }
+    .month-filter::-webkit-scrollbar { display:none; }
+    .month-pill { flex-shrink:0; padding:6px 14px; border-radius:20px; border:1.5px solid #EBEBEB; background:white; font-size:12px; font-family:'Oswald',sans-serif; cursor:pointer; color:#888; white-space:nowrap; }
+    .month-pill.active { background:var(--rouge); border-color:var(--rouge); color:white; }
+    .recap-card { background:white; border-radius:12px; padding:14px 16px; margin-bottom:10px; border-left:4px solid; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+    .recap-header { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+    .recap-icon { font-size:22px; }
+    .recap-label { flex:1; font-weight:600; font-size:14px; color:#333; }
+    .recap-montant { font-family:'Oswald',sans-serif; font-size:20px; font-weight:700; }
+    .recap-sub { font-size:11px; color:#AAA; margin-bottom:8px; }
+    .recap-bar { height:5px; background:#F0F0F0; border-radius:3px; overflow:hidden; }
+    .recap-bar-fill { height:100%; border-radius:3px; transition:width .6s; }
+    .total-card { background:white; border-radius:14px; padding:18px; margin-top:8px; box-shadow:0 2px 12px rgba(0,0,0,0.08); border-top:3px solid var(--rouge); }
+    .total-card-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #F5F5F5; font-size:15px; }
+    .total-card-row:last-of-type { border-bottom:none; }
+    .total-card-big { font-family:'Oswald',sans-serif; font-size:26px; color:var(--rouge-vif); }
+    .total-note { font-size:11px; color:#BBB; margin-top:10px; font-style:italic; }
 
-    .note-input {
-      width: 100%;
-      border: 1.5px solid #EBEBEB;
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 14px;
-      font-family: 'Source Sans 3', sans-serif;
-      color: #555;
-      outline: none;
-      background: #FAFAFA;
-      transition: border-color .2s;
-    }
-    .note-input:focus { border-color: var(--rouge); }
+    /* SETTINGS */
+    .taux-row { display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+    .taux-input { flex:1; font-family:'Oswald',sans-serif; font-size:32px; font-weight:600; border:2px solid #EBEBEB; border-radius:10px; padding:10px 14px; text-align:center; color:var(--texte); outline:none; }
+    .taux-input:focus { border-color:var(--rouge); }
+    .taux-euro { font-family:'Oswald',sans-serif; font-size:22px; color:#AAA; font-weight:600; }
 
-    .preview {
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border: 2px solid;
-      background: white;
-      animation: slideIn .2s ease;
-    }
-    @keyframes slideIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-    .preview-icon { font-size: 30px; }
-    .preview-info { flex: 1; }
-    .preview-label { font-weight: 600; font-size: 14px; color: #333; }
-    .preview-sub { font-size: 11px; color: #AAA; margin-top: 2px; }
-    .preview-montant { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; }
+    /* POURCENTAGES MODIFIABLES */
+    .pct-row { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid #F5F5F5; }
+    .pct-row:last-child { border-bottom:none; }
+    .pct-left { display:flex; align-items:center; gap:10px; }
+    .pct-icon { font-size:22px; }
+    .pct-name { font-size:14px; font-weight:600; color:#333; }
+    .pct-desc { font-size:11px; color:#AAA; margin-top:2px; }
+    .pct-right { display:flex; align-items:center; gap:6px; }
+    .pct-input { width:70px; font-family:'Oswald',sans-serif; font-size:22px; font-weight:700; border:2px solid #EBEBEB; border-radius:10px; padding:8px 6px; text-align:center; color:var(--texte); outline:none; background:#FAFAFA; }
+    .pct-input:focus { border-color:var(--rouge); }
+    .pct-symbol { font-family:'Oswald',sans-serif; font-size:20px; color:#AAA; font-weight:600; }
 
-    .add-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--rouge-vif), var(--rouge));
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 15px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      cursor: pointer;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 15px rgba(139,0,0,0.3);
-      transition: all .15s;
-    }
-    .add-btn:active { transform: scale(0.98); box-shadow: 0 2px 8px rgba(139,0,0,0.2); }
-    .add-btn.secondary {
-      background: linear-gradient(135deg, #7F8C8D, #5D6D7E);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    }
+    .bareme-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #F5F5F5; font-size:13px; }
+    .bareme-row:last-child { border-bottom:none; }
+    .bareme-left { display:flex; align-items:center; gap:8px; color:#555; }
+    .bareme-right { font-family:'Oswald',sans-serif; font-size:13px; font-weight:600; }
 
-    .entry-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 11px 0;
-      border-bottom: 1px solid #F5F5F5;
-      animation: slideIn .2s ease;
-    }
-    .entry-row:last-child { border-bottom: none; }
-    .entry-icon { font-size: 24px; flex-shrink: 0; }
-    .entry-info { flex: 1; min-width: 0; }
-    .entry-label { font-size: 13px; font-weight: 600; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .entry-sub { font-size: 11px; color: #BBB; margin-top: 1px; }
-    .entry-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-    .entry-montant { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 600; }
-    .del-btn {
-      background: #FEE;
-      border: 1.5px solid #F5C6C6;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 18px;
-      padding: 6px 10px;
-      color: #C0392B;
-      min-width: 40px;
-      min-height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .15s;
-    }
-    .del-btn:active { background: #FBBBB9; }
+    .empty { text-align:center; color:#CCC; padding:48px 24px; font-size:15px; line-height:1.6; }
+    .empty-icon { font-size:48px; display:block; margin-bottom:12px; }
 
-    .empty { text-align: center; color: #CCC; padding: 48px 24px; font-size: 15px; line-height: 1.6; }
-    .empty-icon { font-size: 48px; display: block; margin-bottom: 12px; }
+    .toast { position:fixed; bottom:90px; left:50%; transform:translateX(-50%) translateY(20px); background:#2C3E50; color:white; padding:10px 20px; border-radius:24px; font-size:13px; opacity:0; transition:all .3s; pointer-events:none; z-index:999; white-space:nowrap; }
+    .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
-    .recap-card {
-      background: white;
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 10px;
-      border-left: 4px solid;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-    .recap-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-    .recap-icon { font-size: 22px; }
-    .recap-label { flex: 1; font-weight: 600; font-size: 14px; color: #333; }
-    .recap-montant { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; }
-    .recap-sub { font-size: 11px; color: #AAA; margin-bottom: 8px; }
-    .recap-bar { height: 5px; background: #F0F0F0; border-radius: 3px; overflow: hidden; }
-    .recap-bar-fill { height: 100%; border-radius: 3px; transition: width .6s cubic-bezier(.4,0,.2,1); }
-
-    .total-card {
-      background: white;
-      border-radius: 14px;
-      padding: 18px;
-      margin-top: 8px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      border-top: 3px solid var(--rouge);
-    }
-    .total-card-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #F5F5F5;
-      font-size: 15px;
-    }
-    .total-card-row:last-of-type { border-bottom: none; }
-    .total-card-big { font-family: 'Oswald', sans-serif; font-size: 26px; color: var(--rouge-vif); }
-    .total-note { font-size: 11px; color: #BBB; margin-top: 10px; font-style: italic; }
-
-    .taux-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
-    .taux-input {
-      flex: 1;
-      font-family: 'Oswald', sans-serif;
-      font-size: 32px;
-      font-weight: 600;
-      border: 2px solid #EBEBEB;
-      border-radius: 10px;
-      padding: 10px 14px;
-      text-align: center;
-      color: var(--texte);
-      outline: none;
-      transition: border-color .2s;
-    }
-    .taux-input:focus { border-color: var(--rouge); }
-    .taux-euro { font-family: 'Oswald', sans-serif; font-size: 22px; color: #AAA; font-weight: 600; }
-    .bareme-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #F5F5F5;
-      font-size: 13px;
-    }
-    .bareme-row:last-child { border-bottom: none; }
-    .bareme-left { display: flex; align-items: center; gap: 8px; color: #555; }
-    .bareme-right { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; }
-
-    /* Taux perso input */
-    .taux-perso-input {
-      width: 75px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      border: 1.5px solid #EBEBEB;
-      border-radius: 8px;
-      padding: 5px 6px;
-      text-align: center;
-      color: var(--texte);
-      outline: none;
-      transition: border-color .2s;
-      background: #FAFAFA;
-    }
-    .taux-perso-input:focus { border-color: var(--rouge); }
-    .taux-perso-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #F5F5F5;
-    }
-    .taux-perso-row:last-child { border-bottom: none; }
-    .taux-perso-left { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #444; font-weight: 600; }
-    .taux-perso-right { display: flex; align-items: center; gap: 6px; }
-    .taux-perso-unit { font-size: 12px; color: #AAA; }
-    .taux-perso-calc { font-size: 11px; color: #AAA; margin-top: 2px; text-align: right; }
-
-    .toast {
-      position: fixed;
-      bottom: 90px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #2C3E50;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 24px;
-      font-size: 13px;
-      opacity: 0;
-      transition: all .3s;
-      pointer-events: none;
-      z-index: 999;
-      white-space: nowrap;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #DDD; border-radius: 2px; }
+    @keyframes slideIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-top">
     <div class="header-logo">🔥</div>
@@ -575,7 +178,7 @@ Le taux effectif en €/h se calcule automatiquement en dessous de chaque champ.
       <div class="header-title">Vacations SPV</div>
       <div class="header-sub">Sapeur-Pompier Volontaire</div>
     </div>
-    <div class="taux-badge" onclick="goSettings()">
+    <div class="taux-badge" onclick="showTab('settings')">
       <span class="taux-badge-label">Taux/h</span>
       <span class="taux-badge-val" id="hdr-taux">10,53€</span>
     </div>
@@ -598,17 +201,15 @@ Le taux effectif en €/h se calcule automatiquement en dessous de chaque champ.
   </div>
 </div>
 
-<!-- TABS -->
 <div class="tabs">
   <button class="tab-btn active" id="tab-saisie" onclick="showTab('saisie')">✏️ Saisie</button>
   <button class="tab-btn" id="tab-recap" onclick="showTab('recap')">📊 Récap</button>
   <button class="tab-btn" id="tab-settings" onclick="showTab('settings')">⚙️ Paramètres</button>
 </div>
 
-<!-- CONTENT -->
 <div class="content">
 
-  <!-- ===== SAISIE ===== -->
+  <!-- SAISIE -->
   <div id="page-saisie">
     <div class="card">
       <div class="card-title">Type de vacation</div>
@@ -649,12 +250,11 @@ Le taux effectif en €/h se calcule automatiquement en dessous de chaque champ.
         <span class="duree-result-val" id="duree-val">—</span>
         <span class="duree-night" id="duree-night"></span>
       </div>
-
       <div id="toggle-interv-row" style="display:none">
         <div class="toggle-row" onclick="toggleInterv()">
           <div>
             <div class="toggle-label">🚒 Intervention(s) dans cette garde ?</div>
-            <div class="toggle-sub">Déduit chaque intervention (100%) de la garde (60%)</div>
+            <div class="toggle-sub">Déduit chaque intervention de la garde</div>
           </div>
           <button class="toggle-switch" id="toggle-interv-btn"></button>
         </div>
@@ -664,8 +264,7 @@ Le taux effectif en €/h se calcule automatiquement en dessous de chaque champ.
           <button class="add-btn secondary" style="margin-top:8px;font-size:13px;padding:10px" onclick="ajouterIntervention()">＋ Ajouter une intervention</button>
         </div>
       </div>
-
-      <input class="note-input" type="text" id="inp-note" placeholder="Note facultative (ex: feu de forêt)" style="margin-top:10px">
+      <input class="note-input" type="text" id="inp-note" placeholder="Note facultative" style="margin-top:10px">
     </div>
 
     <div id="preview-box" style="display:none"></div>
@@ -677,7 +276,7 @@ Le taux effectif en €/h se calcule automatiquement en dessous de chaque champ.
     </div>
   </div>
 
-  <!-- ===== RECAP ===== -->
+  <!-- RECAP -->
   <div id="page-recap" style="display:none">
     <div class="card" style="padding-bottom:8px">
       <div class="card-title">Filtrer par mois</div>
@@ -686,28 +285,31 @@ Le taux effectif en €/h se calcule automatiquement en dessous de chaque champ.
     <div id="recap-content"></div>
   </div>
 
-  <!-- ===== SETTINGS ===== -->
+  <!-- SETTINGS -->
   <div id="page-settings" style="display:none">
 
     <div class="card">
-      <div class="card-title">Taux horaire national de base</div>
+      <div class="card-title">Taux horaire national</div>
       <div class="taux-row">
         <input class="taux-input" type="number" id="taux-inp" step="0.01" min="0" value="10.53">
         <span class="taux-euro">€/h</span>
       </div>
-      <button class="add-btn" onclick="saveTaux()">💾 Enregistrer le taux de base</button>
+      <button class="add-btn" onclick="saveTaux()">💾 Enregistrer le taux</button>
       <button class="add-btn secondary" onclick="resetTaux()">↩ Réinitialiser (10,53€)</button>
     </div>
 
     <div class="card">
       <div class="card-title">Pourcentages par type de vacation</div>
-      <p style="font-size:11px;color:#AAA;margin-bottom:12px;line-height:1.5;">Modifiez le pourcentage appliqué pour chaque type. Par défaut : barème national.</p>
-      <div id="taux-perso-list"></div>
-      <button class="add-btn secondary" style="margin-top:12px" onclick="resetTauxPerso()">↩ Réinitialiser tous les pourcentages</button>
+      <p style="font-size:12px;color:#AAA;margin-bottom:16px;line-height:1.6;">
+        Modifiez le % de chaque type si les barèmes changent.<br>
+        Exemple : passer la garde de 60% à 65%.
+      </p>
+      <div id="pct-list"></div>
+      <button class="add-btn secondary" style="margin-top:14px" onclick="resetPct()">↩ Réinitialiser les pourcentages</button>
     </div>
 
     <div class="card">
-      <div class="card-title">Barèmes calculés</div>
+      <div class="card-title">Récapitulatif barèmes</div>
       <div id="bareme-list"></div>
     </div>
 
@@ -719,460 +321,385 @@ Le taux effectif en €/h se calcule automatiquement en dessous de chaque champ.
 
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ========== DONNÉES ==========
-const CATEGORIES = [
-  { id: "garde",        label: "Garde postée",    pct: 60,  icon: "🏠", color: "#2980B9" },
-  { id: "intervention", label: "Intervention",    pct: 100, icon: "🚒", color: "#C0392B" },
-  { id: "formation",    label: "Formation",       pct: 100, icon: "📚", color: "#27AE60" },
-  { id: "formateur",   label: "Formateur",        pct: 120, icon: "🎓", color: "#8E44AD" },
-  { id: "mission",     label: "Autres missions",  pct: 100, icon: "⭐", color: "#D35400" },
-  { id: "astreinte",   label: "Astreinte",        pct: 9,   icon: "📡", color: "#16A085" },
+// ===== CONFIG PAR DÉFAUT =====
+const CATS_DEFAULT = [
+  { id:"garde",        label:"Garde postée",   pct:60,  icon:"🏠", color:"#2980B9" },
+  { id:"intervention", label:"Intervention",   pct:100, icon:"🚒", color:"#C0392B" },
+  { id:"formation",    label:"Formation",      pct:100, icon:"📚", color:"#27AE60" },
+  { id:"formateur",    label:"Formateur",      pct:120, icon:"🎓", color:"#8E44AD" },
+  { id:"mission",      label:"Autres missions",pct:100, icon:"⭐", color:"#D35400" },
+  { id:"astreinte",    label:"Astreinte",      pct:9,   icon:"📡", color:"#16A085" },
 ];
 
-const DEFAULT_TAUX = 10.53;
-let taux = parseFloat(localStorage.getItem("spv_taux") || DEFAULT_TAUX);
-let pctPerso = JSON.parse(localStorage.getItem("spv_pct_perso") || "{}");
-let entries = JSON.parse(localStorage.getItem("spv_entries") || "[]");
-let selectedCat = "intervention";
-let selectedMonth = "all";
+const MOIS = ["","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
 
-const MOIS_NOMS = ["","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
-
-// Retourne le pourcentage effectif pour une catégorie
-function getPctCat(catId) {
-  const cat = CATEGORIES.find(c => c.id === catId);
-  return (pctPerso[catId] !== undefined && pctPerso[catId] > 0) ? pctPerso[catId] : cat.pct;
-}
-
-// ========== INIT ==========
-function init() {
-  buildCatGrid();
-  buildBareme();
-  buildTauxPerso();
-  initDateSelectors();
-  updateHeader();
-  renderHistory();
-  document.getElementById("taux-inp").value = taux;
-  updatePreview();
-}
-
-function initDateSelectors() {
-  const now = new Date();
-  const jourSel = document.getElementById("inp-jour");
-  jourSel.innerHTML = Array.from({length:31},(_,i)=><option value="${i+1}">${i+1}</option>).join("");
-  jourSel.value = now.getDate();
-  document.getElementById("inp-mois").value = now.getMonth() + 1;
-  const annSel = document.getElementById("inp-annee");
-  const yr = now.getFullYear();
-  annSel.innerHTML = [yr-1, yr, yr+1].map(y=><option value="${y}">${y}</option>).join("");
-  annSel.value = yr;
-}
-
-// ========== TABS ==========
-function showTab(name) {
-  ["saisie","recap","settings"].forEach(t => {
-    document.getElementById("page-" + t).style.display = t === name ? "block" : "none";
-    document.getElementById("tab-" + t).classList.toggle("active", t === name);
-  });
-  if (name === "recap") { buildMonthFilter(); renderRecap(); }
-  if (name === "settings") { buildBareme(); buildTauxPerso(); document.getElementById("taux-inp").value = taux; }
-}
-
-function goSettings() { showTab("settings"); }
-
-// ========== CATÉGORIES ==========
-function buildCatGrid() {
-  const grid = document.getElementById("cat-grid");
-  grid.innerHTML = CATEGORIES.map(cat => {
-    const p = getPctCat(cat.id);
-    return `
-    <button class="cat-btn ${cat.id === selectedCat ? 'selected' : ''}"
-      id="cat-${cat.id}"
-      style="${cat.id === selectedCat ? border-color:${cat.color};background:${cat.color}18; : ''}"
-      onclick="selectCat('${cat.id}')">
-      <span class="cat-icon">${cat.icon}</span>
-      <span class="cat-label">${cat.label}</span>
-      <span class="cat-pct" style="color:${cat.color}">${p}% · ${(taux*p/100).toFixed(4)}€/h</span>
-    </button>`;
-  }).join("");
-}
-
-// ========== DURÉE / PREVIEW ==========
+// ===== DONNÉES =====
+let taux     = parseFloat(localStorage.getItem("spv_taux") || "10.53");
+let pctPerso = JSON.parse(localStorage.getItem("spv_pct") || "{}");
+let entries  = JSON.parse(localStorage.getItem("spv_entries") || "[]");
+let selCat   = "intervention";
+let selMonth = "all";
 let currentMins = 0;
 let intervActive = false;
 let interventions = [];
 
-function timeToMins(t) {
-  if (!t) return null;
-  const [h, m] = t.split(":").map(Number);
-  return h * 60 + m;
+// Retourne les CATS avec pourcentages personnalisés appliqués
+function getCats() {
+  return CATS_DEFAULT.map(c => ({
+    ...c,
+    pct: pctPerso[c.id] !== undefined ? pctPerso[c.id] : c.pct
+  }));
 }
 
-function diffMins(debut, fin) {
-  let d = timeToMins(debut), f = timeToMins(fin);
-  if (d === null || f === null) return 0;
-  let diff = f - d;
-  if (diff <= 0) diff += 24 * 60;
-  return diff;
+function getCat(id) { return getCats().find(c => c.id === id); }
+
+// ===== INIT =====
+function init() {
+  const now = new Date();
+  // jours
+  const j = document.getElementById("inp-jour");
+  j.innerHTML = Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("");
+  j.value = now.getDate();
+  document.getElementById("inp-mois").value = now.getMonth()+1;
+  // années
+  const a = document.getElementById("inp-annee");
+  const yr = now.getFullYear();
+  a.innerHTML = [yr-1,yr,yr+1].map(y=>`<option value="${y}">${y}</option>`).join("");
+  a.value = yr;
+
+  document.getElementById("taux-inp").value = taux;
+  buildCatGrid();
+  buildPctList();
+  buildBareme();
+  updateHeader();
+  renderHistory();
 }
+
+// ===== TABS =====
+function showTab(name) {
+  ["saisie","recap","settings"].forEach(t => {
+    document.getElementById("page-"+t).style.display = t===name?"block":"none";
+    document.getElementById("tab-"+t).classList.toggle("active", t===name);
+  });
+  if (name==="recap")    { buildMonthFilter(); renderRecap(); }
+  if (name==="settings") { document.getElementById("taux-inp").value=taux; buildPctList(); buildBareme(); }
+}
+
+// ===== GRILLE CATÉGORIES =====
+function buildCatGrid() {
+  document.getElementById("cat-grid").innerHTML = getCats().map(cat => `
+    <button class="cat-btn ${cat.id===selCat?'selected':''}"
+      style="${cat.id===selCat?`border-color:${cat.color};background:${cat.color}18`:''}"
+      onclick="selectCat('${cat.id}')">
+      <span class="cat-icon">${cat.icon}</span>
+      <span class="cat-label">${cat.label}</span>
+      <span class="cat-pct" style="color:${cat.color}">${cat.pct}%</span>
+    </button>`).join("");
+}
+
+// ===== LISTE POURCENTAGES (SETTINGS) =====
+function buildPctList() {
+  document.getElementById("pct-list").innerHTML = CATS_DEFAULT.map(cat => {
+    const pActuel = pctPerso[cat.id] !== undefined ? pctPerso[cat.id] : cat.pct;
+    return `
+    <div class="pct-row">
+      <div class="pct-left">
+        <span class="pct-icon">${cat.icon}</span>
+        <div>
+          <div class="pct-name">${cat.label}</div>
+          <div class="pct-desc">Défaut : ${cat.pct}%</div>
+        </div>
+      </div>
+      <div class="pct-right">
+        <input class="pct-input" type="number" min="0" max="500" step="1"
+          value="${pActuel}"
+          onchange="savePct('${cat.id}', this.value)">
+        <span class="pct-symbol">%</span>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function savePct(catId, val) {
+  const v = parseFloat(val);
+  if (isNaN(v) || v < 0) { showToast("⚠️ Valeur invalide"); return; }
+  pctPerso[catId] = v;
+  localStorage.setItem("spv_pct", JSON.stringify(pctPerso));
+  buildCatGrid();
+  buildBareme();
+  updatePreview();
+  showToast("✅ " + CATS_DEFAULT.find(c=>c.id===catId).label + " → " + v + "%");
+}
+
+function resetPct() {
+  if (!confirm("Réinitialiser tous les pourcentages au barème national ?")) return;
+  pctPerso = {};
+  localStorage.setItem("spv_pct", "{}");
+  buildPctList();
+  buildCatGrid();
+  buildBareme();
+  showToast("↩ Pourcentages réinitialisés");
+}
+
+// ===== BARÈME =====
+function buildBareme() {
+  document.getElementById("bareme-list").innerHTML = getCats().map(cat => `
+    <div class="bareme-row">
+      <span class="bareme-left">${cat.icon} ${cat.label} — ${cat.pct}%</span>
+      <span class="bareme-right" style="color:${cat.color}">${(taux*cat.pct/100).toFixed(4)}€/h</span>
+    </div>`).join("");
+}
+
+// ===== TAUX =====
+function saveTaux() {
+  const v = parseFloat(document.getElementById("taux-inp").value);
+  if (isNaN(v)||v<=0) { showToast("⚠️ Taux invalide"); return; }
+  taux = v;
+  save();
+  buildBareme();
+  buildCatGrid();
+  updateHeader();
+  showToast("✅ Taux enregistré : " + fmt(taux));
+}
+
+function resetTaux() {
+  taux = 10.53;
+  document.getElementById("taux-inp").value = taux;
+  save();
+  buildBareme();
+  buildCatGrid();
+  updateHeader();
+  showToast("↩ Taux réinitialisé à 10,53€");
+}
+
+// ===== DURÉE =====
+function timeToMins(t) { if(!t) return null; const [h,m]=t.split(":").map(Number); return h*60+m; }
+function diffMins(d,f) { let a=timeToMins(d),b=timeToMins(f); if(a===null||b===null) return 0; let r=b-a; if(r<=0) r+=1440; return r; }
+function hm(m) { return `${Math.floor(m/60)}h${String(m%60).padStart(2,"0")}`; }
+function fmt(n) { return n.toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2})+"€"; }
+function montant(pct, mins) { return taux*(pct/100)*(mins/60); }
 
 function calcDuree() {
-  const debut = document.getElementById("inp-debut").value;
-  const fin   = document.getElementById("inp-fin").value;
-  const resBox = document.getElementById("duree-result");
-  const resVal = document.getElementById("duree-val");
-  const resNight = document.getElementById("duree-night");
-  const toggleRow = document.getElementById("toggle-interv-row");
+  const d=document.getElementById("inp-debut").value, f=document.getElementById("inp-fin").value;
+  const box=document.getElementById("duree-result"), tr=document.getElementById("toggle-interv-row");
+  if(!d||!f) { box.style.display="none"; tr.style.display="none"; currentMins=0; updatePreview(); return; }
+  let diff=timeToMins(f)-timeToMins(d), night=false;
+  if(diff<=0){diff+=1440;night=true;}
+  currentMins=diff;
+  document.getElementById("duree-val").textContent=hm(diff);
+  document.getElementById("duree-night").textContent=night?"🌙 passage minuit":"";
+  box.style.display="flex";
+  tr.style.display=selCat==="garde"?"block":"none";
+  if(selCat!=="garde"){intervActive=false;interventions=[];updateIntervUI();}
+  updatePreview();
+}
 
-  if (!debut || !fin) {
-    resBox.style.display = "none";
-    toggleRow.style.display = "none";
-    currentMins = 0; updatePreview(); return;
-  }
-
-  let d = timeToMins(debut), f = timeToMins(fin);
-  let diff = f - d;
-  let overnight = false;
-  if (diff <= 0) { diff += 24 * 60; overnight = true; }
-
-  currentMins = diff;
-  resVal.textContent = hm(diff);
-  resNight.textContent = overnight ? "🌙 passage minuit" : "";
-  resBox.style.display = "flex";
-
-  toggleRow.style.display = selectedCat === "garde" ? "block" : "none";
-  if (selectedCat !== "garde") { intervActive = false; interventions = []; updateIntervUI(); }
-
+function selectCat(id) {
+  selCat=id; buildCatGrid();
+  const tr=document.getElementById("toggle-interv-row");
+  if(selCat!=="garde"){tr.style.display="none";intervActive=false;interventions=[];updateIntervUI();}
+  else if(currentMins>0) tr.style.display="block";
   updatePreview();
 }
 
 function toggleInterv() {
-  intervActive = !intervActive;
-  if (intervActive && interventions.length === 0) interventions = [{debut:"", fin:""}];
-  if (!intervActive) interventions = [];
-  updateIntervUI();
-  updatePreview();
+  intervActive=!intervActive;
+  if(intervActive&&interventions.length===0) interventions=[{debut:"",fin:""}];
+  if(!intervActive) interventions=[];
+  updateIntervUI(); updatePreview();
 }
 
-function ajouterIntervention() {
-  interventions.push({debut:"", fin:""});
-  updateIntervUI();
-  updatePreview();
-}
+function ajouterIntervention() { interventions.push({debut:"",fin:""}); updateIntervUI(); updatePreview(); }
 
 function supprimerIntervention(idx) {
-  interventions.splice(idx, 1);
-  if (interventions.length === 0) { intervActive = false; }
-  updateIntervUI();
-  updatePreview();
+  interventions.splice(idx,1);
+  if(interventions.length===0) intervActive=false;
+  updateIntervUI(); updatePreview();
 }
 
-function onIntervChange(idx, champ, val) {
-  interventions[idx][champ] = val;
-  updatePreview();
-}
+function onIntervChange(idx,champ,val) { interventions[idx][champ]=val; updatePreview(); }
 
 function updateIntervUI() {
-  const btn = document.getElementById("toggle-interv-btn");
-  const block = document.getElementById("interv-block");
-  btn.classList.toggle("on", intervActive);
-  block.style.display = intervActive ? "block" : "none";
-  if (!intervActive) return;
-
-  const list = document.getElementById("interv-list");
-  list.innerHTML = interventions.map((iv, idx) => `
+  const btn=document.getElementById("toggle-interv-btn"), block=document.getElementById("interv-block");
+  btn.classList.toggle("on",intervActive);
+  block.style.display=intervActive?"block":"none";
+  if(!intervActive) return;
+  document.getElementById("interv-list").innerHTML=interventions.map((iv,idx)=>`
     <div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #F5C6C6">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
         <span style="font-size:12px;font-weight:700;color:#C0392B">Intervention ${idx+1}</span>
-        ${interventions.length > 1 ? <button onclick="supprimerIntervention(${idx})" style="background:#FEE;border:1px solid #F5C6C6;border-radius:6px;padding:3px 8px;color:#C0392B;cursor:pointer;font-size:12px">✕ Supprimer</button> : ""}
+        ${interventions.length>1?`<button onclick="supprimerIntervention(${idx})" style="background:#FEE;border:1px solid #F5C6C6;border-radius:6px;padding:3px 8px;color:#C0392B;cursor:pointer;font-size:12px">✕</button>`:""}
       </div>
       <div class="time-row" style="margin-bottom:0">
-        <div class="time-block">
-          <label class="time-label">🟢 Départ</label>
-          <input class="time-input" type="time" value="${iv.debut}" onchange="onIntervChange(${idx},'debut',this.value)">
-        </div>
+        <div class="time-block"><label class="time-label">🟢 Départ</label><input class="time-input" type="time" value="${iv.debut}" onchange="onIntervChange(${idx},'debut',this.value)"></div>
         <div class="time-arrow">→</div>
-        <div class="time-block">
-          <label class="time-label">🔴 Retour</label>
-          <input class="time-input" type="time" value="${iv.fin}" onchange="onIntervChange(${idx},'fin',this.value)">
-        </div>
+        <div class="time-block"><label class="time-label">🔴 Retour</label><input class="time-input" type="time" value="${iv.fin}" onchange="onIntervChange(${idx},'fin',this.value)"></div>
       </div>
-      ${(iv.debut && iv.fin) ? <div style="text-align:center;font-size:12px;color:#888;margin-top:4px">⏱ ${hm(diffMins(iv.debut,iv.fin))}</div> : ""}
-    </div>
-  `).join("");
-}
-
-function selectCat(id) {
-  selectedCat = id;
-  buildCatGrid();
-  const toggleRow = document.getElementById("toggle-interv-row");
-  if (selectedCat !== "garde") {
-    toggleRow.style.display = "none";
-    intervActive = false;
-    interventions = [];
-    updateIntervUI();
-  } else if (currentMins > 0) {
-    toggleRow.style.display = "block";
-  }
-  updatePreview();
-}
-
-function hm(mins) {
-  const h = Math.floor(mins / 60), m = mins % 60;
-  return ${h}h${String(m).padStart(2,"0")};
-}
-
-function montant(pct, totalMins, catId) {
-  const p = catId ? getPctCat(catId) : pct;
-  return taux * (p / 100) * (totalMins / 60);
-}
-
-function fmt(n) {
-  return n.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "€";
+      ${iv.debut&&iv.fin?`<div style="text-align:center;font-size:12px;color:#888;margin-top:4px">⏱ ${hm(diffMins(iv.debut,iv.fin))}</div>`:""}
+    </div>`).join("");
 }
 
 function getTotalIntervMins() {
-  if (!intervActive || selectedCat !== "garde") return 0;
-  return interventions.reduce((acc, iv) => {
-    if (!iv.debut || !iv.fin) return acc;
-    return acc + diffMins(iv.debut, iv.fin);
-  }, 0);
+  if(!intervActive||selCat!=="garde") return 0;
+  return interventions.reduce((a,iv)=>iv.debut&&iv.fin?a+diffMins(iv.debut,iv.fin):a,0);
 }
 
 function updatePreview() {
-  const cat = CATEGORIES.find(c => c.id === selectedCat);
-  const box = document.getElementById("preview-box");
-  if (currentMins === 0) { box.style.display = "none"; return; }
+  const cat=getCat(selCat), box=document.getElementById("preview-box");
+  if(currentMins===0){box.style.display="none";return;}
+  const d=document.getElementById("inp-debut").value, f=document.getElementById("inp-fin").value;
+  const totalIntervMins=getTotalIntervMins();
+  const validIntervs=interventions.filter(iv=>iv.debut&&iv.fin);
+  box.style.display="block";
 
-  const debut = document.getElementById("inp-debut").value;
-  const fin   = document.getElementById("inp-fin").value;
-  const totalIntervMins = getTotalIntervMins();
-  const validIntervs = interventions.filter(iv => iv.debut && iv.fin);
-  const tCat = taux;
-  const pCat = getPctCat(cat.id);
-
-  box.style.display = "block";
-  box.className = "";
-  box.style.borderColor = "";
-
-  if (intervActive && validIntervs.length > 0 && totalIntervMins > 0) {
-    const gardeMins = Math.max(0, currentMins - totalIntervMins);
-    const gardeVal  = montant(60, gardeMins, "garde");
-    const catGarde  = CATEGORIES.find(c => c.id === "garde");
-    const catInterv = CATEGORIES.find(c => c.id === "intervention");
-    let total = gardeVal;
-    let intervLines = validIntervs.map((iv, i) => {
-      const mins = diffMins(iv.debut, iv.fin);
-      const val  = montant(100, mins, "intervention");
-      total += val;
-      return `
-        <div class="preview-line" style="border-color:${catInterv.color}">
-          <span class="preview-line-icon">${catInterv.icon}</span>
-          <div class="preview-line-info">
-            <div class="preview-line-label">Intervention ${validIntervs.length>1?i+1:""} — ${hm(mins)}</div>
-            <div class="preview-line-sub">${iv.debut}→${iv.fin} · ${getPctCat("intervention")}% · ${taux.toFixed(2)}€/h</div>
-          </div>
-          <div class="preview-line-montant" style="color:${catInterv.color}">${fmt(val)}</div>
-        </div>`;
+  if(intervActive&&validIntervs.length>0&&totalIntervMins>0){
+    const catG=getCat("garde"), catI=getCat("intervention");
+    const gardeMins=Math.max(0,currentMins-totalIntervMins);
+    const gardeVal=montant(catG.pct,gardeMins);
+    let total=gardeVal;
+    let lines=validIntervs.map((iv,i)=>{
+      const m=diffMins(iv.debut,iv.fin), v=montant(catI.pct,m); total+=v;
+      return `<div class="preview-line" style="border-color:${catI.color}">
+        <span class="preview-line-icon">${catI.icon}</span>
+        <div class="preview-line-info">
+          <div class="preview-line-label">Intervention ${validIntervs.length>1?i+1:""} — ${hm(m)}</div>
+          <div class="preview-line-sub">${iv.debut}→${iv.fin} · ${catI.pct}%</div>
+        </div>
+        <div class="preview-line-montant" style="color:${catI.color}">${fmt(v)}</div>
+      </div>`;
     }).join("");
-
-    box.innerHTML = `
-      <div class="preview-double">
-        <div class="preview-line" style="border-color:${catGarde.color}">
-          <span class="preview-line-icon">${catGarde.icon}</span>
-          <div class="preview-line-info">
-            <div class="preview-line-label">Garde postée — ${hm(gardeMins)}</div>
-            <div class="preview-line-sub">${getPctCat("garde")}% · ${taux.toFixed(2)}€/h · déduit ${hm(totalIntervMins)} d'intervention</div>
-          </div>
-          <div class="preview-line-montant" style="color:${catGarde.color}">${fmt(gardeVal)}</div>
+    box.innerHTML=`<div class="preview-double">
+      <div class="preview-line" style="border-color:${catG.color}">
+        <span class="preview-line-icon">${catG.icon}</span>
+        <div class="preview-line-info">
+          <div class="preview-line-label">Garde postée — ${hm(gardeMins)}</div>
+          <div class="preview-line-sub">${catG.pct}% · déduit ${hm(totalIntervMins)} d'intervention</div>
         </div>
-        ${intervLines}
-        <div style="text-align:right;font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#333;padding:6px 4px 0;border-top:1px solid #eee;margin-top:4px">
-          Total : ${fmt(total)}
-        </div>
-      </div>`;
+        <div class="preview-line-montant" style="color:${catG.color}">${fmt(gardeVal)}</div>
+      </div>
+      ${lines}
+      <div style="text-align:right;font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#333;padding:6px 4px 0;border-top:1px solid #eee;margin-top:4px">Total : ${fmt(total)}</div>
+    </div>`;
   } else {
-    const val = montant(pCat, currentMins, cat.id);
-    box.innerHTML = `
-      <div class="preview" style="border-color:${cat.color}">
-        <span class="preview-icon">${cat.icon}</span>
-        <div class="preview-info">
-          <div class="preview-label">${cat.label} — ${hm(currentMins)}</div>
-          <div class="preview-sub">${debut} → ${fin} · ${taux.toFixed(2)}€ × ${pCat}% = ${(taux*pCat/100).toFixed(4)}€/h</div>
-        </div>
-        <div class="preview-montant" style="color:${cat.color}">${fmt(val)}</div>
-      </div>`;
+    const val=montant(cat.pct,currentMins);
+    box.innerHTML=`<div class="preview" style="border-color:${cat.color}">
+      <span class="preview-icon">${cat.icon}</span>
+      <div class="preview-info">
+        <div class="preview-label">${cat.label} — ${hm(currentMins)}</div>
+        <div class="preview-sub">${d} → ${f} · ${taux.toFixed(2)}€ × ${cat.pct}% = ${(taux*cat.pct/100).toFixed(4)}€/h</div>
+      </div>
+      <div class="preview-montant" style="color:${cat.color}">${fmt(val)}</div>
+    </div>`;
   }
 }
 
-// ========== AJOUT ENTRÉE ==========
+// ===== AJOUT =====
 function addEntry() {
-  if (currentMins === 0) { showToast("⚠️ Saisissez les horaires de début et fin"); return; }
-  const cat   = CATEGORIES.find(c => c.id === selectedCat);
-  const note  = document.getElementById("inp-note").value.trim();
-  const debut = document.getElementById("inp-debut").value;
-  const fin   = document.getElementById("inp-fin").value;
-  const jour  = parseInt(document.getElementById("inp-jour").value);
-  const mois  = parseInt(document.getElementById("inp-mois").value);
-  const annee = parseInt(document.getElementById("inp-annee").value);
-  const moisKey   = ${annee}-${String(mois).padStart(2,"0")};
-  const dateLabel = ${String(jour).padStart(2,"0")} ${MOIS_NOMS[mois]} ${annee};
+  if(currentMins===0){showToast("⚠️ Saisissez les horaires");return;}
+  const cat=getCat(selCat);
+  const note=document.getElementById("inp-note").value.trim();
+  const debut=document.getElementById("inp-debut").value;
+  const fin=document.getElementById("inp-fin").value;
+  const jour=parseInt(document.getElementById("inp-jour").value);
+  const mois=parseInt(document.getElementById("inp-mois").value);
+  const annee=parseInt(document.getElementById("inp-annee").value);
+  const moisKey=`${annee}-${String(mois).padStart(2,"0")}`;
+  const dateLabel=`${String(jour).padStart(2,"0")} ${MOIS[mois]} ${annee}`;
+  const validIntervs=interventions.filter(iv=>iv.debut&&iv.fin);
+  const totalIntervMins=getTotalIntervMins();
 
-  const validIntervs = interventions.filter(iv => iv.debut && iv.fin);
-  const totalIntervMins = getTotalIntervMins();
-
-  if (intervActive && selectedCat === "garde" && validIntervs.length > 0) {
-    if (totalIntervMins >= currentMins) { showToast("⚠️ Les interventions dépassent la durée de garde !"); return; }
-    const gardeMins = currentMins - totalIntervMins;
-    const catGarde  = CATEGORIES.find(c => c.id === "garde");
-    const catInterv = CATEGORIES.find(c => c.id === "intervention");
-    const ts = Date.now();
-    entries.unshift({
-      id: ts, cat:"garde", label: catGarde.label, pct:getPctCat("garde"), icon:catGarde.icon, color:catGarde.color,
-      pctUtilise: getPctCat("garde"),
-      heures: Math.floor(gardeMins/60), minutes: gardeMins%60,
-      debut, fin, note, jour, mois, annee, moisKey, date: dateLabel, lienGroupe: ts,
+  if(intervActive&&selCat==="garde"&&validIntervs.length>0){
+    if(totalIntervMins>=currentMins){showToast("⚠️ Interventions dépassent la garde !");return;}
+    const catG=getCat("garde"), catI=getCat("intervention");
+    const ts=Date.now();
+    const gardeMins=currentMins-totalIntervMins;
+    entries.unshift({id:ts,cat:"garde",label:catG.label,pct:catG.pct,icon:catG.icon,color:catG.color,
+      heures:Math.floor(gardeMins/60),minutes:gardeMins%60,debut,fin,note,jour,mois,annee,moisKey,date:dateLabel});
+    validIntervs.forEach((iv,i)=>{
+      const m=diffMins(iv.debut,iv.fin);
+      entries.unshift({id:ts+i+1,cat:"intervention",label:catI.label,pct:catI.pct,icon:catI.icon,color:catI.color,
+        heures:Math.floor(m/60),minutes:m%60,debut:iv.debut,fin:iv.fin,
+        note:validIntervs.length>1?`Intervention ${i+1}${note?" — "+note:""}`:(note||"Intervention en garde"),
+        jour,mois,annee,moisKey,date:dateLabel});
     });
-    validIntervs.forEach((iv, i) => {
-      const mins = diffMins(iv.debut, iv.fin);
-      entries.unshift({
-        id: ts + i + 1, cat:"intervention", label: catInterv.label, pct:getPctCat("intervention"), icon:catInterv.icon, color:catInterv.color,
-        pctUtilise: getPctCat("intervention"),
-        heures: Math.floor(mins/60), minutes: mins%60,
-        debut: iv.debut, fin: iv.fin,
-        note: validIntervs.length > 1 ? Intervention ${i+1}${note?" — "+note:""} : (note ? note+" (intervention)" : "Intervention en garde"),
-        jour, mois, annee, moisKey, date: dateLabel, lienGroupe: ts,
-      });
-    });
-    showToast(✅ Garde + ${validIntervs.length} intervention${validIntervs.length>1?"s":""} ajoutées);
+    showToast(`✅ Garde + ${validIntervs.length} intervention(s) ajoutées`);
   } else {
-    const h = Math.floor(currentMins / 60), m = currentMins % 60;
-    entries.unshift({
-      id: Date.now(), cat: cat.id, label: cat.label, pct: getPctCat(cat.id), icon: cat.icon, color: cat.color,
-      pctUtilise: getPctCat(cat.id),
-      heures: h, minutes: m, debut, fin, note, jour, mois, annee, moisKey, date: dateLabel,
-    });
+    entries.unshift({id:Date.now(),cat:cat.id,label:cat.label,pct:cat.pct,icon:cat.icon,color:cat.color,
+      heures:Math.floor(currentMins/60),minutes:currentMins%60,debut,fin,note,jour,mois,annee,moisKey,date:dateLabel});
     showToast("✅ Vacation ajoutée");
   }
 
   save();
-  document.getElementById("inp-debut").value = "";
-  document.getElementById("inp-fin").value = "";
-  document.getElementById("inp-note").value = "";
-  document.getElementById("duree-result").style.display = "none";
-  document.getElementById("toggle-interv-row").style.display = "none";
-  document.getElementById("preview-box").style.display = "none";
-  intervActive = false;
-  interventions = [];
-  updateIntervUI();
-  currentMins = 0;
-  renderHistory();
-  updateHeader();
+  document.getElementById("inp-debut").value="";
+  document.getElementById("inp-fin").value="";
+  document.getElementById("inp-note").value="";
+  document.getElementById("duree-result").style.display="none";
+  document.getElementById("toggle-interv-row").style.display="none";
+  document.getElementById("preview-box").style.display="none";
+  intervActive=false; interventions=[]; updateIntervUI(); currentMins=0;
+  renderHistory(); updateHeader();
 }
 
-// ========== SUPPRESSION ==========
 function removeEntry(id) {
-  entries = entries.filter(e => e.id !== id);
-  save();
-  renderHistory();
-  updateHeader();
-  showToast("🗑 Vacation supprimée");
+  entries=entries.filter(e=>e.id!==id); save(); renderHistory(); updateHeader(); showToast("🗑 Supprimée");
 }
 
-// ========== RENDER HISTORY ==========
+// ===== HISTORIQUE =====
 function renderHistory() {
-  const card = document.getElementById("history-card");
-  const list = document.getElementById("history-list");
-  if (entries.length === 0) { card.style.display = "none"; return; }
-  card.style.display = "block";
-  list.innerHTML = entries.map(e => {
-    const totalMins = e.heures * 60 + e.minutes;
-    const p = e.pctUtilise || e.pct;
-    const val = taux * (p / 100) * (totalMins / 60);
-    const horaires = (e.debut && e.fin) ? `${e.debut}→${e.fin} · ` : "";
-    return `
-      <div class="entry-row">
-        <span class="entry-icon">${e.icon}</span>
-        <div class="entry-info">
-          <div class="entry-label">${e.label}${e.note ? " — " + e.note : ""}</div>
-          <div class="entry-sub">${e.date} · ${horaires}${hm(totalMins)} · ${p}%</div>
-        </div>
-        <div class="entry-right">
-          <span class="entry-montant" style="color:${e.color}">${fmt(val)}</span>
-          <button class="del-btn" onclick="removeEntry(${e.id})">🗑</button>
-        </div>
-      </div>`;
+  const card=document.getElementById("history-card"), list=document.getElementById("history-list");
+  if(entries.length===0){card.style.display="none";return;}
+  card.style.display="block";
+  list.innerHTML=entries.map(e=>{
+    const mins=e.heures*60+e.minutes, val=montant(e.pct,mins);
+    return `<div class="entry-row">
+      <span class="entry-icon">${e.icon}</span>
+      <div class="entry-info">
+        <div class="entry-label">${e.label}${e.note?" — "+e.note:""}</div>
+        <div class="entry-sub">${e.date} · ${e.debut?e.debut+"→"+e.fin+" · ":""}${hm(mins)} · ${e.pct}%</div>
+      </div>
+      <div class="entry-right">
+        <span class="entry-montant" style="color:${e.color}">${fmt(val)}</span>
+        <button class="del-btn" onclick="removeEntry(${e.id})">🗑</button>
+      </div>
+    </div>`;
   }).join("");
 }
 
-// ========== MONTH FILTER ==========
+// ===== FILTRE MOIS =====
 function buildMonthFilter() {
-  const keys = [...new Set(entries.map(e => e.moisKey || "").filter(Boolean))].sort().reverse();
-  const el = document.getElementById("month-filter");
-  if (keys.length === 0) { el.innerHTML = ""; return; }
-  el.innerHTML = <button class="month-pill ${selectedMonth==='all'?'active':''}" onclick="setMonthFilter('all')">Tous</button> +
-    keys.map(k => {
-      const [y, m] = k.split("-");
-      const label = ${MOIS_NOMS[parseInt(m)]} ${y};
-      return <button class="month-pill ${selectedMonth===k?'active':''}" onclick="setMonthFilter('${k}')">${label}</button>;
-    }).join("");
+  const keys=[...new Set(entries.map(e=>e.moisKey||"").filter(Boolean))].sort().reverse();
+  const el=document.getElementById("month-filter");
+  if(!keys.length){el.innerHTML="";return;}
+  el.innerHTML=`<button class="month-pill ${selMonth==='all'?'active':''}" onclick="setMonthFilter('all')">Tous</button>`+
+    keys.map(k=>{const[y,m]=k.split("-");return`<button class="month-pill ${selMonth===k?'active':''}" onclick="setMonthFilter('${k}')">${MOIS[parseInt(m)]} ${y}</button>`;}).join("");
 }
 
-function setMonthFilter(key) {
-  selectedMonth = key;
-  buildMonthFilter();
-  renderRecap();
-}
+function setMonthFilter(k){selMonth=k;buildMonthFilter();renderRecap();}
 
-// ========== RECAP ==========
+// ===== RECAP =====
 function renderRecap() {
-  const el = document.getElementById("recap-content");
-  const filtered = selectedMonth === "all" ? entries : entries.filter(e => e.moisKey === selectedMonth);
-
-  if (filtered.length === 0) {
-    el.innerHTML = <div class="empty"><span class="empty-icon">📋</span>${entries.length===0?"Aucune vacation saisie.<br>Commencez par ajouter des entrées dans l'onglet Saisie.":"Aucune vacation pour ce mois."}</div>;
-    return;
-  }
-
-  const calcVal = e => {
-    const totalMins = e.heures * 60 + e.minutes;
-    const p = e.pctUtilise || e.pct;
-    return taux * (p / 100) * (totalMins / 60);
-  };
-
-  const totalMins = filtered.reduce((a,e) => a + e.heures*60+e.minutes, 0);
-  const totalMnt  = filtered.reduce((a,e) => a + calcVal(e), 0);
-
-  const bycat = CATEGORIES.map(cat => {
-    const list = filtered.filter(e => e.cat === cat.id);
-    if (!list.length) return null;
-    const mins = list.reduce((a,e) => a+e.heures*60+e.minutes, 0);
-    const mnt  = list.reduce((a,e) => a+calcVal(e), 0);
-    return { ...cat, mins, mnt, count: list.length };
+  const el=document.getElementById("recap-content");
+  const filtered=selMonth==="all"?entries:entries.filter(e=>e.moisKey===selMonth);
+  if(!filtered.length){el.innerHTML=`<div class="empty"><span class="empty-icon">📋</span>${entries.length===0?"Aucune vacation saisie.":"Aucune vacation pour ce mois."}</div>`;return;}
+  const totalMins=filtered.reduce((a,e)=>a+e.heures*60+e.minutes,0);
+  const totalMnt=filtered.reduce((a,e)=>a+montant(e.pct,e.heures*60+e.minutes),0);
+  const bycat=getCats().map(cat=>{
+    const list=filtered.filter(e=>e.cat===cat.id); if(!list.length) return null;
+    const mins=list.reduce((a,e)=>a+e.heures*60+e.minutes,0);
+    const mnt=list.reduce((a,e)=>a+montant(e.pct,e.heures*60+e.minutes),0);
+    return{...cat,mins,mnt,count:list.length};
   }).filter(Boolean);
-
-  const titre = selectedMonth === "all" ? "Toutes les vacations" :
-    (() => { const [y,m] = selectedMonth.split("-"); return ${MOIS_NOMS[parseInt(m)]} ${y}; })();
-
-  el.innerHTML = <div style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#AAA;margin-bottom:10px;padding-left:2px">${titre}</div> +
-    bycat.map(c => `
-    <div class="recap-card" style="border-color:${c.color}">
-      <div class="recap-header">
-        <span class="recap-icon">${c.icon}</span>
-        <span class="recap-label">${c.label}</span>
-        <span class="recap-montant" style="color:${c.color}">${fmt(c.mnt)}</span>
-      </div>
-      <div class="recap-sub">${c.count} vacation${c.count>1?"s":""} · ${hm(c.mins)} · taux ${c.pct}%</div>
-      <div class="recap-bar">
-        <div class="recap-bar-fill" style="width:${Math.round(c.mnt/totalMnt*100)}%;background:${c.color}"></div>
-      </div>
-    </div>
-  `).join("") + `
-    <div class="total-card">
+  const titre=selMonth==="all"?"Toutes les vacations":(()=>{const[y,m]=selMonth.split("-");return`${MOIS[parseInt(m)]} ${y}`;})();
+  el.innerHTML=`<div style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#AAA;margin-bottom:10px">${titre}</div>`+
+    bycat.map(c=>`<div class="recap-card" style="border-color:${c.color}">
+      <div class="recap-header"><span class="recap-icon">${c.icon}</span><span class="recap-label">${c.label}</span><span class="recap-montant" style="color:${c.color}">${fmt(c.mnt)}</span></div>
+      <div class="recap-sub">${c.count} vacation(s) · ${hm(c.mins)} · ${c.pct}%</div>
+      <div class="recap-bar"><div class="recap-bar-fill" style="width:${Math.round(c.mnt/totalMnt*100)}%;background:${c.color}"></div></div>
+    </div>`).join("")+
+    `<div class="total-card">
       <div class="total-card-row"><span>Total heures</span><strong>${hm(totalMins)}</strong></div>
       <div class="total-card-row"><span>Nombre de vacations</span><strong>${filtered.length}</strong></div>
       <div class="total-card-row"><span>Total brut estimé</span><span class="total-card-big">${fmt(totalMnt)}</span></div>
@@ -1180,138 +707,35 @@ function renderRecap() {
     </div>`;
 }
 
-// ========== HEADER ==========
+// ===== HEADER =====
 function updateHeader() {
-  const calcVal = e => {
-    const totalMins = e.heures * 60 + e.minutes;
-    const p = e.pctUtilise || e.pct;
-    return taux * (p / 100) * (totalMins / 60);
-  };
-  const totalMins = entries.reduce((a,e) => a+e.heures*60+e.minutes, 0);
-  const totalMnt  = entries.reduce((a,e) => a+calcVal(e), 0);
-  document.getElementById("hdr-heures").textContent = hm(totalMins);
-  document.getElementById("hdr-montant").textContent = fmt(totalMnt);
-  document.getElementById("hdr-count").textContent = entries.length;
-  document.getElementById("hdr-taux").textContent = taux.toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2}) + "€";
+  const totalMins=entries.reduce((a,e)=>a+e.heures*60+e.minutes,0);
+  const totalMnt=entries.reduce((a,e)=>a+montant(e.pct,e.heures*60+e.minutes),0);
+  document.getElementById("hdr-heures").textContent=hm(totalMins);
+  document.getElementById("hdr-montant").textContent=fmt(totalMnt);
+  document.getElementById("hdr-count").textContent=entries.length;
+  document.getElementById("hdr-taux").textContent=taux.toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2})+"€";
 }
 
-// ========== TAUX DE BASE ==========
-function saveTaux() {
-  const val = parseFloat(document.getElementById("taux-inp").value);
-  if (isNaN(val) || val <= 0) { showToast("⚠️ Taux invalide"); return; }
-  taux = val;
-  save();
-  buildBareme();
-  buildTauxPerso();
-  buildCatGrid();
-  updateHeader();
-  showToast("✅ Taux de base enregistré : " + fmt(taux));
-}
-
-function resetTaux() {
-  taux = DEFAULT_TAUX;
-  document.getElementById("taux-inp").value = taux;
-  save();
-  buildBareme();
-  buildTauxPerso();
-  buildCatGrid();
-  updateHeader();
-  showToast("↩ Taux réinitialisé à 10,53€");
-}
-
-// ========== TAUX PERSONNALISÉS PAR TYPE ==========
-function buildTauxPerso() {
-  const el = document.getElementById("taux-perso-list");
-  if (!el) return;
-  el.innerHTML = CATEGORIES.map(cat => {
-    const pActuel = pctPerso[cat.id] !== undefined ? pctPerso[cat.id] : cat.pct;
-    const isPerso = pctPerso[cat.id] !== undefined;
-    const tauxEffectif = (taux * pActuel / 100).toFixed(4);
-    return `
-      <div class="taux-perso-row">
-        <div class="taux-perso-left">
-          <span>${cat.icon}</span>
-          <div>
-            <div>${cat.label}</div>
-            <div style="font-size:10px;color:${isPerso ? cat.color : '#AAA'};font-weight:400">${isPerso ? '✏️ Modifié' : 'Barème national'}</div>
-          </div>
-        </div>
-        <div>
-          <div class="taux-perso-right">
-            <input class="taux-perso-input" type="number" step="1" min="0" max="300"
-              id="pct-perso-${cat.id}"
-              value="${pActuel}"
-              onchange="savePctPerso('${cat.id}', this.value)"
-              style="border-color:${isPerso ? cat.color : '#EBEBEB'}">
-            <span class="taux-perso-unit">%</span>
-          </div>
-          <div class="taux-perso-calc">→ ${tauxEffectif}€/h effectif</div>
-        </div>
-      </div>`;
-  }).join("");
-}
-
-function savePctPerso(catId, val) {
-  const v = parseFloat(val);
-  if (isNaN(v) || v < 0) { showToast("⚠️ Pourcentage invalide"); return; }
-  pctPerso[catId] = v;
-  localStorage.setItem("spv_pct_perso", JSON.stringify(pctPerso));
-  buildBareme();
-  buildTauxPerso();
-  buildCatGrid();
-  showToast("✅ " + CATEGORIES.find(c=>c.id===catId).label + " → " + v + "%");
-}
-
-function resetTauxPerso() {
-  if (!confirm("Réinitialiser tous les pourcentages au barème national ?")) return;
-  pctPerso = {};
-  localStorage.setItem("spv_pct_perso", "{}");
-  buildTauxPerso();
-  buildBareme();
-  buildCatGrid();
-  showToast("↩ Pourcentages réinitialisés");
-}
-
-// ========== BARÈME ==========
-function buildBareme() {
-  document.getElementById("bareme-list").innerHTML = CATEGORIES.map(cat => {
-    const p = getPctCat(cat.id);
-    return `
-    <div class="bareme-row">
-      <span class="bareme-left">${cat.icon} ${cat.label}</span>
-      <span class="bareme-right" style="color:${cat.color}">${p}% → ${(taux*p/100).toFixed(4)}€/h</span>
-    </div>`;
-  }).join("");
-}
-
-// ========== CLEAR ==========
-function clearAll() {
-  if (!confirm("Effacer toutes les vacations ? Cette action est irréversible.")) return;
-  entries = [];
-  save();
-  renderHistory();
-  updateHeader();
-  showToast("🗑 Données effacées");
-}
-
-// ========== SAVE ==========
+// ===== SAVE =====
 function save() {
   localStorage.setItem("spv_taux", taux);
+  localStorage.setItem("spv_pct", JSON.stringify(pctPerso));
   localStorage.setItem("spv_entries", JSON.stringify(entries));
-  localStorage.setItem("spv_pct_perso", JSON.stringify(pctPerso));
 }
 
-// ========== TOAST ==========
+function clearAll() {
+  if(!confirm("Effacer toutes les vacations ?")) return;
+  entries=[]; save(); renderHistory(); updateHeader(); showToast("🗑 Données effacées");
+}
+
+// ===== TOAST =====
 let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+function showToast(msg){
+  const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove("show"),2200);
 }
 
-// ========== START ==========
 init();
 </script>
 <script>
