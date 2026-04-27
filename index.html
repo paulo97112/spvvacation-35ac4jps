@@ -361,13 +361,13 @@ function init() {
   const now = new Date();
   // jours
   const j = document.getElementById("inp-jour");
-  j.innerHTML = Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("");
+  j.innerHTML = Array.from({length:31},(_,i)=><option value="${i+1}">${i+1}</option>).join("");
   j.value = now.getDate();
   document.getElementById("inp-mois").value = now.getMonth()+1;
   // années
   const a = document.getElementById("inp-annee");
   const yr = now.getFullYear();
-  a.innerHTML = [yr-1,yr,yr+1].map(y=>`<option value="${y}">${y}</option>`).join("");
+  a.innerHTML = [yr-1,yr,yr+1].map(y=><option value="${y}">${y}</option>).join("");
   a.value = yr;
 
   document.getElementById("taux-inp").value = taux;
@@ -392,7 +392,7 @@ function showTab(name) {
 function buildCatGrid() {
   document.getElementById("cat-grid").innerHTML = getCats().map(cat => `
     <button class="cat-btn ${cat.id===selCat?'selected':''}"
-      style="${cat.id===selCat?`border-color:${cat.color};background:${cat.color}18`:''}"
+      style="${cat.id===selCat?border-color:${cat.color};background:${cat.color}18:''}"
       onclick="selectCat('${cat.id}')">
       <span class="cat-icon">${cat.icon}</span>
       <span class="cat-label">${cat.label}</span>
@@ -478,7 +478,7 @@ function resetTaux() {
 // ===== DURÉE =====
 function timeToMins(t) { if(!t) return null; const [h,m]=t.split(":").map(Number); return h*60+m; }
 function diffMins(d,f) { let a=timeToMins(d),b=timeToMins(f); if(a===null||b===null) return 0; let r=b-a; if(r<=0) r+=1440; return r; }
-function hm(m) { return `${Math.floor(m/60)}h${String(m%60).padStart(2,"0")}`; }
+function hm(m) { return ${Math.floor(m/60)}h${String(m%60).padStart(2,"0")}; }
 function fmt(n) { return n.toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2})+"€"; }
 function montant(pct, mins) { return taux*(pct/100)*(mins/60); }
 
@@ -531,14 +531,14 @@ function updateIntervUI() {
     <div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #F5C6C6">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
         <span style="font-size:12px;font-weight:700;color:#C0392B">Intervention ${idx+1}</span>
-        ${interventions.length>1?`<button onclick="supprimerIntervention(${idx})" style="background:#FEE;border:1px solid #F5C6C6;border-radius:6px;padding:3px 8px;color:#C0392B;cursor:pointer;font-size:12px">✕</button>`:""}
+        ${interventions.length>1?<button onclick="supprimerIntervention(${idx})" style="background:#FEE;border:1px solid #F5C6C6;border-radius:6px;padding:3px 8px;color:#C0392B;cursor:pointer;font-size:12px">✕</button>:""}
       </div>
       <div class="time-row" style="margin-bottom:0">
         <div class="time-block"><label class="time-label">🟢 Départ</label><input class="time-input" type="time" value="${iv.debut}" onchange="onIntervChange(${idx},'debut',this.value)"></div>
         <div class="time-arrow">→</div>
         <div class="time-block"><label class="time-label">🔴 Retour</label><input class="time-input" type="time" value="${iv.fin}" onchange="onIntervChange(${idx},'fin',this.value)"></div>
       </div>
-      ${iv.debut&&iv.fin?`<div style="text-align:center;font-size:12px;color:#888;margin-top:4px">⏱ ${hm(diffMins(iv.debut,iv.fin))}</div>`:""}
+      ${iv.debut&&iv.fin?<div style="text-align:center;font-size:12px;color:#888;margin-top:4px">⏱ ${hm(diffMins(iv.debut,iv.fin))}</div>:""}
     </div>`).join("");
 }
 
@@ -606,8 +606,8 @@ function addEntry() {
   const jour=parseInt(document.getElementById("inp-jour").value);
   const mois=parseInt(document.getElementById("inp-mois").value);
   const annee=parseInt(document.getElementById("inp-annee").value);
-  const moisKey=`${annee}-${String(mois).padStart(2,"0")}`;
-  const dateLabel=`${String(jour).padStart(2,"0")} ${MOIS[mois]} ${annee}`;
+  const moisKey=${annee}-${String(mois).padStart(2,"0")};
+  const dateLabel=${String(jour).padStart(2,"0")} ${MOIS[mois]} ${annee};
   const validIntervs=interventions.filter(iv=>iv.debut&&iv.fin);
   const totalIntervMins=getTotalIntervMins();
 
@@ -622,10 +622,10 @@ function addEntry() {
       const m=diffMins(iv.debut,iv.fin);
       entries.unshift({id:ts+i+1,cat:"intervention",label:catI.label,pct:catI.pct,icon:catI.icon,color:catI.color,
         heures:Math.floor(m/60),minutes:m%60,debut:iv.debut,fin:iv.fin,
-        note:validIntervs.length>1?`Intervention ${i+1}${note?" — "+note:""}`:(note||"Intervention en garde"),
+        note:validIntervs.length>1?Intervention ${i+1}${note?" — "+note:""}:(note||"Intervention en garde"),
         jour,mois,annee,moisKey,date:dateLabel});
     });
-    showToast(`✅ Garde + ${validIntervs.length} intervention(s) ajoutées`);
+    showToast(✅ Garde + ${validIntervs.length} intervention(s) ajoutées);
   } else {
     entries.unshift({id:Date.now(),cat:cat.id,label:cat.label,pct:cat.pct,icon:cat.icon,color:cat.color,
       heures:Math.floor(currentMins/60),minutes:currentMins%60,debut,fin,note,jour,mois,annee,moisKey,date:dateLabel});
@@ -673,7 +673,7 @@ function buildMonthFilter() {
   const keys=[...new Set(entries.map(e=>e.moisKey||"").filter(Boolean))].sort().reverse();
   const el=document.getElementById("month-filter");
   if(!keys.length){el.innerHTML="";return;}
-  el.innerHTML=`<button class="month-pill ${selMonth==='all'?'active':''}" onclick="setMonthFilter('all')">Tous</button>`+
+  el.innerHTML=<button class="month-pill ${selMonth==='all'?'active':''}" onclick="setMonthFilter('all')">Tous</button>+
     keys.map(k=>{const[y,m]=k.split("-");return`<button class="month-pill ${selMonth===k?'active':''}" onclick="setMonthFilter('${k}')">${MOIS[parseInt(m)]} ${y}</button>`;}).join("");
 }
 
@@ -683,7 +683,7 @@ function setMonthFilter(k){selMonth=k;buildMonthFilter();renderRecap();}
 function renderRecap() {
   const el=document.getElementById("recap-content");
   const filtered=selMonth==="all"?entries:entries.filter(e=>e.moisKey===selMonth);
-  if(!filtered.length){el.innerHTML=`<div class="empty"><span class="empty-icon">📋</span>${entries.length===0?"Aucune vacation saisie.":"Aucune vacation pour ce mois."}</div>`;return;}
+  if(!filtered.length){el.innerHTML=<div class="empty"><span class="empty-icon">📋</span>${entries.length===0?"Aucune vacation saisie.":"Aucune vacation pour ce mois."}</div>;return;}
   const totalMins=filtered.reduce((a,e)=>a+e.heures*60+e.minutes,0);
   const totalMnt=filtered.reduce((a,e)=>a+montant(e.pct,e.heures*60+e.minutes),0);
   const bycat=getCats().map(cat=>{
@@ -693,7 +693,7 @@ function renderRecap() {
     return{...cat,mins,mnt,count:list.length};
   }).filter(Boolean);
   const titre=selMonth==="all"?"Toutes les vacations":(()=>{const[y,m]=selMonth.split("-");return`${MOIS[parseInt(m)]} ${y}`;})();
-  el.innerHTML=`<div style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#AAA;margin-bottom:10px">${titre}</div>`+
+  el.innerHTML=<div style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#AAA;margin-bottom:10px">${titre}</div>+
     bycat.map(c=>`<div class="recap-card" style="border-color:${c.color}">
       <div class="recap-header"><span class="recap-icon">${c.icon}</span><span class="recap-label">${c.label}</span><span class="recap-montant" style="color:${c.color}">${fmt(c.mnt)}</span></div>
       <div class="recap-sub">${c.count} vacation(s) · ${hm(c.mins)} · ${c.pct}%</div>
